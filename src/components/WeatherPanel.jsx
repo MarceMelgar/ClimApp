@@ -1,18 +1,16 @@
 import React, {useState} from 'react';
 import { Form } from './Form';
 import { Card } from './Card';
-
+import { API_KEY } from '../helpers/apiKey';
 export const WeatherPanel = () => {
-
-    /* apiKey: process.env.API_KEY, */
-    let urlWeather = "https://api.openweathermap.org/data/2.5/weather?appid=dfc72931d5d7c26fb661743f55b4eb4b&lang=es";
-    let cityUrl = "&q=";
-    let urlForecast = "https://api.openweathermap.org/data/2.5/forecast?appid=dfc72931d5d7c26fb661743f55b4eb4b&lang=es"
-    const [weather, setWeather] = useState([]);
-    const [forecast, setForecast] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [show, setShow] = useState(false);
-    const [location, setLocation] = useState("");
+    let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}&lang=es`
+    let cityUrl = "&q="
+    let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lang=es`
+    const [weather, setWeather] = useState([])
+    const [forecast, setForecast] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(false)
+    const [location, setLocation] = useState("")
     const getLocation = async(loc) => {
         setLoading(true)
         setLocation(loc)
