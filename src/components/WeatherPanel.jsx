@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Form } from './Form';
 import { Card } from './Card';
-import { API_KEY } from "../helpers/apiKey"
 export const WeatherPanel = () => { 
+    const API_KEY= process.env.REACT_APP_API_KEY
     let urlWeather = `https://api.openweathermap.org/data/2.5/weather?appid=${API_KEY}&lang=es`
     let cityUrl = "&q="
     let urlForecast = `https://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}&lang=es`
@@ -16,9 +16,7 @@ export const WeatherPanel = () => {
         setLocation(loc)
 
         //Fetch para tiempo actual
-
         urlWeather = urlWeather + cityUrl + loc;
-
         await fetch(urlWeather).then((res) =>{
             if(!res.ok) throw (res)
             return res.json()
@@ -31,9 +29,7 @@ export const WeatherPanel = () => {
         });
 
         //Fetch de predicción
-
         urlForecast = urlForecast + cityUrl + loc;
-
         await fetch(urlForecast).then((res) =>{
             if(!res.ok) throw (res)
             return res.json()
@@ -41,13 +37,11 @@ export const WeatherPanel = () => {
             setForecast(forecastData)
             setLoading(false)
             setShow(true)
-
         }).catch(error =>{
             console.log(error)
             setLoading(false)
             setShow(false)
         });
-
     }
     
     return(
